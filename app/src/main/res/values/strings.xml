@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MenuPrincipal</string>
+    <string name="nombreJuego">Nombre del juego</string>
+    <string name="mando">Mando</string>
+    <string name="estadisticas">Estadísticas</string>
+    <string name="iniciarsesion">Iniciar sesión</string>
+    <string name="configuracion">Configuración</string>
+    <string name="background">Background de la aplicación</string>
+    <string name="puerto">Puerto:</string>
+    <string name="direccionip">Dirección IP:</string>
+    <string name="conectar">Conectar</string>
+</resources>
