@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/conectar"
-        android:layout_width="163dp"
-        android:layout_height="69dp"
+        android:layout_width="164dp"
+        android:layout_height="70dp"
         android:layout_marginEnd="50dp"
         android:text="@string/conectar"
         android:textSize="24sp"
@@ -46,42 +46,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/direccionip"
+        android:id="@+id/textoPuerto"
         android:layout_width="370dp"
         android:layout_height="39dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/bordes_redondos_datos"
-        android:hint="192.168.1.1..."
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bordes_redondos_nombres"
+        android:text="@string/puerto"
         android:textColor="#F3F1F7"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoIP" />
 
-    <TextView
-        android:id="@+id/puerto"
+    <EditText
+        android:id="@+id/editTextPort"
         android:layout_width="370dp"
-        android:layout_height="39dp"
+        android:layout_height="50dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/bordes_redondos_datos"
-        android:hint="8080"
-        android:textColor="#F3F1F7"
-        android:textSize="24sp"
+        android:ems="10"
+        android:hint="36000"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoPuerto" />
 
-    <TextView
-        android:id="@+id/textoPuerto"
+    <EditText
+        android:id="@+id/editTextIP"
         android:layout_width="370dp"
-        android:layout_height="39dp"
+        android:layout_height="50dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bordes_redondos_nombres"
-        android:text="@string/direccionip"
-        android:textColor="#F3F1F7"
-        android:textSize="24sp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bordes_redondos_datos"
+        android:ems="10"
+        android:hint="192.168.0.1"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/direccionip" />
+        app:layout_constraintTop_toBottomOf="@+id/textoIP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
