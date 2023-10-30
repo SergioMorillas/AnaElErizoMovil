@@ -34,6 +34,7 @@
         android:id="@+id/login"
         android:layout_width="188dp"
         android:layout_height="57dp"
+        android:onClick="lanzarMInicioSesión"
         android:text="@string/iniciarsesion"
         app:layout_constraintBottom_toTopOf="@+id/estadisticas"
         app:layout_constraintEnd_toEndOf="parent"
