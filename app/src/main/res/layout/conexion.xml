@@ -25,12 +25,33 @@
         android:id="@+id/conectar"
         android:layout_width="164dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="48dp"
         android:text="@string/conectar"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.407" />
+
+    <ImageView
+        android:id="@+id/botonRojo"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="128dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botonVerde"
+        app:srcCompat="@drawable/botonRojo_Apagado" />
+
+    <ImageView
+        android:id="@+id/botonVerde"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="128dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/botonVerde_Apagado" />
 
     <TextView
         android:id="@+id/textoIP"
