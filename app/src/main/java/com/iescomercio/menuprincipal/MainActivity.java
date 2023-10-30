@@ -18,4 +18,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i=new Intent(this, login.class);
         startActivity(i);
     }
+
+    public void lanzarConfig(View view){
+        Intent i=new Intent(this, conexion.class);
+        startActivity(i);
+    }
 }
