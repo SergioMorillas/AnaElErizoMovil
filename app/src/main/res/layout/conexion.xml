@@ -42,8 +42,7 @@
         android:layout_marginBottom="128dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/botonVerde"
-        app:layout_constraintTop_toBottomOf="@+id/conectar"
-        app:srcCompat="@drawable/botonRojo_Apagado" />
+        app:layout_constraintTop_toBottomOf="@+id/conectar" />
 
     <ImageView
         android:id="@+id/botonVerde"
@@ -54,8 +53,7 @@
         android:layout_marginBottom="128dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/conectar"
-        app:srcCompat="@drawable/botonVerde_Apagado" />
+        app:layout_constraintTop_toBottomOf="@+id/conectar" />
 
     <TextView
         android:id="@+id/textoIP"
