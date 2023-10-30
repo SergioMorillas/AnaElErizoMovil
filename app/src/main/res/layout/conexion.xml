@@ -34,28 +34,28 @@
         app:layout_constraintVertical_bias="0.407" />
 
     <ImageView
-        android:id="@+id/botonRojo"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="128dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/botonVerde"
-        app:layout_constraintTop_toBottomOf="@+id/conectar"
-        app:srcCompat="@drawable/botonrojo_apagado" />
-
-    <ImageView
         android:id="@+id/botonVerde"
         android:layout_width="66dp"
         android:layout_height="66dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="56dp"
         android:layout_marginBottom="128dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conectar"
         app:srcCompat="@drawable/botonverde_apagado" />
+
+    <ImageView
+        android:id="@+id/botonRojo"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="128dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botonVerde"
+        app:layout_constraintTop_toBottomOf="@+id/conectar"
+        app:srcCompat="@drawable/botonrojo_apagado" />
 
     <TextView
         android:id="@+id/textoIP"
