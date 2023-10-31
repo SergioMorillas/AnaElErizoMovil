@@ -15,12 +15,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lanzarMInicioSesión(View view){
-        Intent i=new Intent(this, login.class);
+        Intent i=new Intent(this, Login.class);
         startActivity(i);
     }
 
     public void lanzarConfig(View view){
-        Intent i=new Intent(this, conexion.class);
+        Intent i=new Intent(this, Conexion.class);
         startActivity(i);
     }
 
