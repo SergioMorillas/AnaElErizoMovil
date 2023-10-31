@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class conexion extends AppCompatActivity {
+public class Conexion extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
