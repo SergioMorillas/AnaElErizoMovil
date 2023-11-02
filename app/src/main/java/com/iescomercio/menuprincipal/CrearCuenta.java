@@ -11,7 +11,7 @@ public class CrearCuenta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_crearcuenta);
+        setContentView(R.layout.crear_cuenta);
     }
 
     public void lanzarMenu(View view){

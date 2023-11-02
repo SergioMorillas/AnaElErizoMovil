@@ -9,4 +9,6 @@
     <string name="puerto">Puerto:</string>
     <string name="direccionip">Dirección IP:</string>
     <string name="conectar">Conectar</string>
+    <string name="conectado">Conectado</string>
+    <string name="desconectado">Desconectado</string>
 </resources>

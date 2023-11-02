@@ -21,45 +21,47 @@
         app:srcCompat="@drawable/background" />
 
     <Button
-        android:id="@+id/jugar"
+        android:id="@+id/botonMando"
         android:layout_width="188dp"
         android:layout_height="57dp"
+        android:onClick="lanzarMando"
         android:text="@string/mando"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toTopOf="@+id/botonIniciarSesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/botonIniciarSesion"
         android:layout_width="188dp"
         android:layout_height="57dp"
-        android:onClick="lanzarMInicioSesión"
+        android:onClick="lanzarInicioSesión"
         android:text="@string/iniciarsesion"
-        app:layout_constraintBottom_toTopOf="@+id/estadisticas"
+        app:layout_constraintBottom_toTopOf="@+id/botonEstadisticas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jugar" />
+        app:layout_constraintTop_toBottomOf="@+id/botonMando" />
 
     <Button
-        android:id="@+id/estadisticas"
+        android:id="@+id/botonEstadisticas"
         android:layout_width="188dp"
         android:layout_height="57dp"
         android:text="@string/estadisticas"
-        app:layout_constraintBottom_toTopOf="@+id/configuracion"
+        android:onClick="lanzarEstadisticas"
+        app:layout_constraintBottom_toTopOf="@+id/botonConfiguracion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintTop_toBottomOf="@+id/botonIniciarSesion" />
 
     <Button
-        android:id="@+id/configuracion"
+        android:id="@+id/botonConfiguracion"
         android:layout_width="188dp"
         android:layout_height="57dp"
-        android:onClick="lanzarConfig"
+        android:onClick="lanzarConfiguracion"
         android:text="@string/configuracion"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/estadisticas" />
+        app:layout_constraintTop_toBottomOf="@+id/botonEstadisticas" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

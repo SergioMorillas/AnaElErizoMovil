@@ -13,31 +13,45 @@
         android:theme="@style/Theme.MenuPrincipal"
         tools:targetApi="31">
         <activity
-            android:screenOrientation="landscape"
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity  android:screenOrientation="landscape"
-            android:name=".login"
+        <activity
+            android:name=".Configuracion"
             android:exported="true"
-            ></activity>
-        <activity  android:screenOrientation="landscape"
-            android:name=".conexion"
-            android:exported="true"
-            ></activity>
-        <activity  android:screenOrientation="landscape"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
             android:name=".CrearCuenta"
             android:exported="true"
-            ></activity>
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".Estadisticas"
+            android:exported="true"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".InicioSesion"
+            android:exported="true"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".Mando"
+            android:exported="true"
+            android:screenOrientation="landscape">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
