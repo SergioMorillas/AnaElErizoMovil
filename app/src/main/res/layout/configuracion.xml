@@ -21,6 +21,22 @@
         app:layout_constraintVertical_bias="0.187"
         app:srcCompat="@drawable/background" />
 
+    <TextView
+        android:id="@+id/editTextOnOfF"
+        android:layout_width="192dp"
+        android:layout_height="38dp"
+        android:background="@drawable/bordes_redondos_nombres2"
+        android:gravity="center_horizontal"
+        android:text="@string/desconectado"
+        android:textColor="#F3F1F7"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toEndOf="@+id/editTextPort"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.859" />
+
     <Button
         android:id="@+id/botonConectar"
         android:layout_width="192dp"
@@ -33,17 +49,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextOnOfF"
         app:layout_constraintTop_toBottomOf="@+id/botonVerde"
-        app:layout_constraintVertical_bias="0.918" />
-
-    <ImageView
-        android:id="@+id/botonVerde"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextOnOfF"
-        app:layout_constraintEnd_toEndOf="@+id/botonConectar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341"
-        app:srcCompat="@drawable/botonverde_apagado" />
+        app:layout_constraintVertical_bias="0.91" />
 
     <ImageView
         android:id="@+id/botonRojo"
@@ -52,56 +58,25 @@
         app:layout_constraintBottom_toBottomOf="@+id/botonVerde"
         app:layout_constraintStart_toStartOf="@+id/botonConectar"
         app:layout_constraintTop_toTopOf="@+id/botonVerde"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/botonrojo_encendido" />
 
-    <TextView
-        android:id="@+id/textoIP"
-        android:layout_width="370dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="72dp"
-        android:background="@drawable/bordes_redondos_nombres"
-        android:text="@string/direccionip"
-        android:textColor="#F3F1F7"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textoPuerto"
-        android:layout_width="370dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/bordes_redondos_nombres"
-        android:text="@string/puerto"
-        android:textColor="#F3F1F7"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoIP" />
-
-    <TextView
-        android:id="@+id/editTextOnOfF"
-        android:layout_width="192dp"
-        android:layout_height="38dp"
-        android:background="@drawable/bordes_redondos_nombres2"
-        android:gravity="center_horizontal"
-        android:text="@string/desconectado"
-        android:textColor="#F3F1F7"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toEndOf="@+id/editTextPort"
+    <ImageView
+        android:id="@+id/botonVerde"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextOnOfF"
+        app:layout_constraintEnd_toEndOf="@+id/botonConectar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734" />
+        app:layout_constraintVertical_bias="0.283"
+        app:srcCompat="@drawable/botonverde_apagado" />
 
     <EditText
         android:id="@+id/editTextPort"
         android:layout_width="370dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
         android:gravity="center_horizontal"
@@ -111,53 +86,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoPuerto" />
 
-    <EditText
-        android:id="@+id/editTextIP1"
-        android:layout_width="92.5dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="319dp"
-        android:background="@drawable/bordes_redondos_datos"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="1"
-        android:inputType="number"
-        android:maxLength="5"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textoIP"
+        android:layout_width="370dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/bordes_redondos_nombres"
+        android:text="@string/direccionip"
+        android:textColor="#F3F1F7"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.08" />
-
-    <EditText
-        android:id="@+id/editTextIP0"
-        android:layout_width="92.5dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="226dp"
-        android:background="@drawable/bordes_redondos_datos"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="0"
-        android:inputType="number"
-        android:maxLength="5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.08" />
-
-    <EditText
-        android:id="@+id/editTextIP168"
-        android:layout_width="92.5dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="133dp"
-        android:background="@drawable/bordes_redondos_datos"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="168"
-        android:inputType="number"
-        android:maxLength="5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextIP192"
@@ -173,5 +113,67 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.073" />
+
+    <EditText
+        android:id="@+id/editTextIP168"
+        android:layout_width="92.5dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="132dp"
+        android:background="@drawable/bordes_redondos_datos"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="168"
+        android:inputType="number"
+        android:maxLength="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoIP"
+        app:layout_constraintVertical_bias="0.073" />
+
+    <EditText
+        android:id="@+id/editTextIP0"
+        android:layout_width="92.5dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="224dp"
+        android:background="@drawable/bordes_redondos_datos"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="0"
+        android:inputType="number"
+        android:maxLength="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoIP"
+        app:layout_constraintVertical_bias="0.073" />
+
+    <TextView
+        android:id="@+id/textoPuerto"
+        android:layout_width="370dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/bordes_redondos_nombres"
+        android:text="@string/puerto"
+        android:textColor="#F3F1F7"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoIP" />
+
+    <EditText
+        android:id="@+id/editTextIP1"
+        android:layout_width="92.5dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="320dp"
+        android:background="@drawable/bordes_redondos_datos"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="1"
+        android:inputType="number"
+        android:maxLength="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoIP"
+        app:layout_constraintVertical_bias="0.073" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
