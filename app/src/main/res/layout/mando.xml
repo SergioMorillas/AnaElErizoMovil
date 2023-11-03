@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498"
-        app:srcCompat="@drawable/botonrojo_encendido" />
+        app:srcCompat="@drawable/boton_rojo_encendido" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -41,5 +41,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498"
-        app:srcCompat="@drawable/botonrojo_encendido" />
+        app:srcCompat="@drawable/boton_rojo_encendido" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="289dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="-20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/barra_gris" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="289dp"
+        android:layout_height="74dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        app:srcCompat="@drawable/barra_gris" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="289dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="-20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.601"
+        app:srcCompat="@drawable/barra_gris" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="289dp"
+        android:layout_height="74dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.783"
+        app:srcCompat="@drawable/barra_gris" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

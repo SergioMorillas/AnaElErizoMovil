@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imagenFondo3"
         android:layout_width="871dp"
         android:layout_height="459dp"
         android:contentDescription="@string/background"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.07999998" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editTextUsuario"
         android:layout_width="255dp"
         android:layout_height="40dp"
         android:background="@drawable/bordes_redondos_nombres"
@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.35000002" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/editTextRContraseña"
         android:layout_width="255dp"
         android:layout_height="40dp"
         android:background="@drawable/bordes_redondos_datos"
@@ -75,7 +75,7 @@
         app:layout_constraintVertical_bias="0.694" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/editTextContraseña"
         android:layout_width="255dp"
         android:layout_height="40dp"
         android:background="@drawable/bordes_redondos_datos"
@@ -94,7 +94,7 @@
         app:layout_constraintVertical_bias="0.52" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnCrearCuenta"
         android:layout_width="222dp"
         android:layout_height="50dp"
         android:onClick="lanzarMenu"

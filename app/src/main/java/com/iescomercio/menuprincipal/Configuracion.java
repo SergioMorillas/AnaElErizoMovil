@@ -2,7 +2,6 @@ package com.iescomercio.menuprincipal;
 
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,14 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.StringDef;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.NoRouteToHostException;
-import java.net.PortUnreachableException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -66,16 +63,16 @@ public class Configuracion extends AppCompatActivity {
         try (Socket socket = new Socket(ip, puerto);
              BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             if (conectado) { //Si esta conectado hace estas instrucciones
-                botonRojo.setImageResource(R.drawable.botonrojo_encendido);
-                botonVerde.setImageResource(R.drawable.botonverde_apagado);
+                botonRojo.setImageResource(R.drawable.boton_rojo_encendido);
+                botonVerde.setImageResource(R.drawable.boton_verde_apagado);
                 textoOnOff.setText(getApplicationContext().getResources().getString(R.string.desconectado));
                 conectar.setText("Conectar");
                 conectado = false;
 
             } else { // Si esta desconectado pues hace estas
                 if (br.readLine().equals("1")) {
-                    botonRojo.setImageResource(R.drawable.botonrojo_apagado);
-                    botonVerde.setImageResource(R.drawable.botonverde_encendido);
+                    botonRojo.setImageResource(R.drawable.boton_rojo_apagado);
+                    botonVerde.setImageResource(R.drawable.boton_verde_encendido);
                     textoOnOff.setText(getApplicationContext().getResources().getString(R.string.conectado));
                     conectar.setText("Desconectar");
                     conectado = true;

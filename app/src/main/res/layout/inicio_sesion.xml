@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.074" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/editTextRContraseña"
         android:layout_width="255dp"
         android:layout_height="40dp"
         android:background="@drawable/bordes_redondos_datos"
@@ -57,7 +57,7 @@
         app:layout_constraintVertical_bias="0.529" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnCrearCuenta"
         android:layout_width="206dp"
         android:layout_height="52dp"
         android:onClick="lanzarCrearCuenta"
@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="0.92" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnInicioSesion"
         android:layout_width="206dp"
         android:layout_height="52dp"
         android:onClick="lanzarMenu"
@@ -85,7 +85,7 @@
         app:layout_constraintVertical_bias="0.92" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editTextUsuario"
         android:layout_width="255dp"
         android:layout_height="40dp"
         android:background="@drawable/bordes_redondos_nombres"

@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imagenFondo2"
         android:layout_width="871dp"
         android:layout_height="459dp"
         android:contentDescription="@string/background"
@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="@+id/botonConectar"
         app:layout_constraintTop_toTopOf="@+id/botonVerde"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/botonrojo_encendido" />
+        app:srcCompat="@drawable/boton_rojo_encendido" />
 
     <ImageView
         android:id="@+id/botonVerde"
@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="@+id/botonConectar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.283"
-        app:srcCompat="@drawable/botonverde_apagado" />
+        app:srcCompat="@drawable/boton_verde_apagado" />
 
     <EditText
         android:id="@+id/editTextPort"
