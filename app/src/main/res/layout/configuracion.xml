@@ -79,7 +79,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:hint="36000"
         android:inputType="number"
         android:maxLength="5"
@@ -106,14 +106,18 @@
         android:layout_marginStart="40dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:hint="192"
         android:inputType="number"
-        android:maxLength="5"
+        android:maxLength="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.073"
+        android:nextFocusForward="@+id/editTextIP168"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
+        />
 
     <EditText
         android:id="@+id/editTextIP168"
@@ -122,14 +126,17 @@
         android:layout_marginStart="132dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:hint="168"
         android:inputType="number"
-        android:maxLength="5"
+        android:maxLength="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.073"
+        android:nextFocusForward="@+id/editTextIP0"
+        android:imeOptions="actionNext"
+        />
 
     <EditText
         android:id="@+id/editTextIP0"
@@ -138,14 +145,17 @@
         android:layout_marginStart="224dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:hint="0"
         android:inputType="number"
-        android:maxLength="5"
+        android:maxLength="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.073"
+        android:nextFocusForward="@+id/editTextIP1"
+        android:imeOptions="actionNext"
+        />
 
     <TextView
         android:id="@+id/textoPuerto"
@@ -158,22 +168,25 @@
         android:textColor="#F3F1F7"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoIP" />
+        app:layout_constraintTop_toBottomOf="@+id/textoIP"
+        />
 
     <EditText
         android:id="@+id/editTextIP1"
         android:layout_width="92.5dp"
         android:layout_height="50dp"
-        android:layout_marginStart="320dp"
+        android:layout_marginStart="316dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:hint="1"
         android:inputType="number"
-        android:maxLength="5"
+        android:maxLength="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.073"
+        android:nextFocusForward="@+id/editTextPort"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -81,7 +81,7 @@ public class Configuracion extends AppCompatActivity {
                 }
             }
         } catch (NoRouteToHostException e){
-            Toast.makeText(getApplicationContext(), "Ha habido un error en la conexión", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "El servidor no es alcanzable", Toast.LENGTH_SHORT).show();
         }catch (UnknownHostException e){
             Toast.makeText(getApplicationContext(), "Ha habido un error en la conexión", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
