@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imagenFondo4"
+        android:layout_width="871dp"
+        android:layout_height="459dp"
+        android:contentDescription="@string/background"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="526dp"
+        android:layout_height="240dp"
+        android:background="#C9582198"
+        android:fontFamily="@font/coda"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:text="Bienvenido a nuestra aplicación. Estás utilizando un mando que funciona a través de la red. Para configurarlo, tendrás que conectarte desde la ventana de configuración, añadiendo la IP y el puerto que el videojuego te muestre desde su menú de ayuda. También podrás meter tu cuenta para guardar tus estadísticas o jugar como invitado, pero en ese caso las estadísticas no se guardarán. "
+        android:textAlignment="center"
+        android:textColor="#E4E4E4"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonMenu"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/baseline_arrow_forward_24"
+        android:backgroundTint="#E4E4E4"
+        android:onClick="lanzarMenu"
+        android:rotation="180"
+        android:textColor="#DCDCDC"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048" />
+</androidx.constraintlayout.widget.ConstraintLayout>

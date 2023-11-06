@@ -97,7 +97,7 @@
         android:id="@+id/btnCrearCuenta"
         android:layout_width="222dp"
         android:layout_height="50dp"
-        android:onClick="lanzarMenu"
+        android:onClick="lanzarInicioSesión"
         android:text="Crear Cuenta"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,4 +106,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.927" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonMenu3"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/baseline_arrow_forward_24"
+        android:backgroundTint="#E4E4E4"
+        android:onClick="lanzarMenu"
+        android:rotation="180"
+        android:textColor="#DCDCDC"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,4 +64,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonEstadisticas" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonInfo"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:background="@drawable/boton_redondo"
+        android:backgroundTint="#372B59"
+        android:onClick="lanzarInformacion"
+        android:text="@string/interrogante"
+        android:textColor="#DCDCDC"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

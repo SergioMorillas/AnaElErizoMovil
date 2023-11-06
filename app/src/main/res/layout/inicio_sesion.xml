@@ -103,4 +103,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.354" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonMenu2"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/baseline_arrow_forward_24"
+        android:backgroundTint="#E4E4E4"
+        android:onClick="lanzarMenu"
+        android:rotation="180"
+        android:textColor="#DCDCDC"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029999971" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

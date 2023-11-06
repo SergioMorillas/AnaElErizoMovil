@@ -1,5 +1,6 @@
 package com.iescomercio.menuprincipal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -87,5 +88,10 @@ public class Configuracion extends AppCompatActivity {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void lanzarMenu(View view){
+        Intent i=new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 }

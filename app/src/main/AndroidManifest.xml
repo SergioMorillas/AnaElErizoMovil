@@ -47,6 +47,11 @@
             android:exported="true"
             android:screenOrientation="landscape">
         </activity>
+        <activity
+            android:name=".Informacion"
+            android:exported="true"
+            android:screenOrientation="landscape">
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

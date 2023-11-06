@@ -19,4 +19,8 @@ public class CrearCuenta extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void lanzarInicioSesión(View view){
+        Intent i=new Intent(this, InicioSesion.class);
+        startActivity(i);
+    }
 }

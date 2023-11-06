@@ -11,4 +11,5 @@
     <string name="conectar">Conectar</string>
     <string name="conectado">Conectado</string>
     <string name="desconectado">Desconectado</string>
+    <string name="interrogante">?</string>
 </resources>

@@ -32,4 +32,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void lanzarInformacion(View view){
+        Intent i=new Intent(this, Informacion.class);
+        startActivity(i);
+    }
 }
