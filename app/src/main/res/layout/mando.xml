@@ -145,4 +145,59 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.826" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/flechaAbajo"
+        android:layout_width="57dp"
+        android:layout_height="78dp"
+        android:background="@drawable/boton_cruceta"
+        android:backgroundTint="#424242"
+        android:rotation="180"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.676" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/flechaArriba"
+        android:layout_width="57dp"
+        android:layout_height="78dp"
+        android:background="@drawable/boton_cruceta"
+        android:backgroundTint="#424242"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/flechaIzq"
+        android:layout_width="57dp"
+        android:layout_height="78dp"
+        android:background="@drawable/boton_cruceta"
+        android:backgroundTint="#424242"
+        android:rotation="-90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.504" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/flechaDcha"
+        android:layout_width="57dp"
+        android:layout_height="78dp"
+        android:background="@drawable/boton_cruceta"
+        android:backgroundTint="#424242"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.504" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
