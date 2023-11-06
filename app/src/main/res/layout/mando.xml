@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/background" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/botonSalto"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/boton_rojo_encendido" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/botonAgacharse"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,15 +135,16 @@
         app:layout_constraintVertical_bias="0.416" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
+        android:id="@+id/botonCasa"
         android:layout_width="41dp"
         android:layout_height="41dp"
+        android:layout_marginTop="22dp"
         android:background="@drawable/baseline_home_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
+        app:layout_constraintVertical_bias="0.821" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/flechaAbajo"
