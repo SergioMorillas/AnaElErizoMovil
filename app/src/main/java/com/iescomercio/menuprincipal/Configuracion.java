@@ -49,7 +49,7 @@ public class Configuracion extends AppCompatActivity {
                     int port12 = Integer.parseInt(puerto.getText().toString());
                     conexion(ip, port12);
                 } catch (NumberFormatException nfe) {
-                    Toast.makeText(getApplicationContext(), "Ha habido un error en el numero de puerto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ha habido un error en el número de puerto", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -63,14 +63,14 @@ public class Configuracion extends AppCompatActivity {
     private void conexion(String ip, int puerto) {
         try (Socket socket = new Socket(ip, puerto);
              BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-            if (conectado) { //Si esta conectado hace estas instrucciones
+            if (conectado) { //Si está conectado hace estas instrucciones
                 botonRojo.setImageResource(R.drawable.boton_rojo_encendido);
                 botonVerde.setImageResource(R.drawable.boton_verde_apagado);
                 textoOnOff.setText(getApplicationContext().getResources().getString(R.string.desconectado));
                 conectar.setText("Conectar");
                 conectado = false;
 
-            } else { // Si esta desconectado pues hace estas
+            } else { // Si está desconectado pues hace estas
                 if (br.readLine().equals("1")) {
                     botonRojo.setImageResource(R.drawable.boton_rojo_apagado);
                     botonVerde.setImageResource(R.drawable.boton_verde_encendido);
@@ -78,7 +78,7 @@ public class Configuracion extends AppCompatActivity {
                     conectar.setText("Desconectar");
                     conectado = true;
                 } else {
-                    Toast.makeText(getApplicationContext(), "Se ha superado el limite de usuarios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Se ha superado el límite de usuarios", Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (NoRouteToHostException e){
