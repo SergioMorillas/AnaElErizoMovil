@@ -3,13 +3,24 @@
     <string name="nombreJuego">Nombre del juego</string>
     <string name="mando">Mando</string>
     <string name="estadisticas">Estadísticas</string>
-    <string name="iniciarsesion">Iniciar sesión</string>
+    <string name="iniciarSesion">Iniciar sesión</string>
     <string name="configuracion">Configuración</string>
     <string name="background">Background de la aplicación</string>
-    <string name="puerto">Puerto:</string>
-    <string name="direccionip">Dirección IP:</string>
+    <string name="puerto">Puerto</string>
+    <string name="direccionIP">Dirección IP</string>
     <string name="conectar">Conectar</string>
     <string name="conectado">Conectado</string>
     <string name="desconectado">Desconectado</string>
     <string name="interrogante">?</string>
+    <string name="tituloCreacionCuenta">Creación de cuenta</string>
+    <string name="nombreUsuario">Nombre de usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="repetirContraseña">Repite la contraseña</string>
+    <string name="crearCuenta">Crear Cuenta</string>
+    <string name="tituloEstadisticas">Estadísticas del juego</string>
+    <string name="estadisticasGenerales">Generales</string>
+    <string name="estadisticasIndividuales">Introduzca el nombre</string>
+    <string name="sinCuenta">No tengo cuenta</string>
+    <string name="start">START</string>
+    <string name="select">SELECT</string>
 </resources>
