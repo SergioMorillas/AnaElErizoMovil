@@ -49,6 +49,7 @@ public class Mando extends AppCompatActivity {
         botones[6] = findViewById(R.id.botonCasa);      // Boton casa manda 7
         botones[7] = findViewById(R.id.botonSaltar);    // Boton saltar manda 8
         botones[8] = findViewById(R.id.botonAgachar);   // Boton agachar manda 9
+
         for (int i = 0; i < botones.length; i++) setClickListener(botones[i], i + 1);
     }
 
