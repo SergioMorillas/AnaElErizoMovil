@@ -1,6 +1,7 @@
 package com.iescomercio.menuprincipal;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -13,8 +14,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.NoRouteToHostException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -25,7 +28,8 @@ public class Configuracion extends AppCompatActivity {
     TextView textoOnOff;
     ImageView botonRojo, botonVerde;
     boolean conectado = false;
-
+    SharedPreferences preferencias = getPreferences(this.MODE_PRIVATE);
+    SharedPreferences.Editor editor = preferencias.edit();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,21 +66,27 @@ public class Configuracion extends AppCompatActivity {
 
     private void conexion(String ip, int puerto) {
         try (Socket socket = new Socket(ip, puerto);
-             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
+            editor.putString("ip", ip);
+            editor.putInt("puerto", puerto);
             if (conectado) { //Si esta conectado hace estas instrucciones
                 botonRojo.setImageResource(R.drawable.boton_rojo_encendido);
                 botonVerde.setImageResource(R.drawable.boton_verde_apagado);
                 textoOnOff.setText(getApplicationContext().getResources().getString(R.string.desconectado));
                 conectar.setText("Conectar");
                 conectado = false;
-
-            } else { // Si esta desconectado pues hace estas
+                bw.write("0");
+                bw.flush();
+            } else {
                 if (br.readLine().equals("1")) {
                     botonRojo.setImageResource(R.drawable.boton_rojo_apagado);
                     botonVerde.setImageResource(R.drawable.boton_verde_encendido);
                     textoOnOff.setText(getApplicationContext().getResources().getString(R.string.conectado));
                     conectar.setText("Desconectar");
                     conectado = true;
+                    bw.write("1");
+                    bw.flush();
                 } else {
                     Toast.makeText(getApplicationContext(), "Se ha superado el limite de usuarios", Toast.LENGTH_SHORT).show();
                 }

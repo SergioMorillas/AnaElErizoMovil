@@ -15,7 +15,7 @@ public class CrearCuenta extends AppCompatActivity {
     }
 
     public void lanzarMenu(View view){
-        Intent i=new Intent(this, InicioSesion.class);
+        Intent i=new Intent(this, MainActivity.class);
         startActivity(i);
     }
 
