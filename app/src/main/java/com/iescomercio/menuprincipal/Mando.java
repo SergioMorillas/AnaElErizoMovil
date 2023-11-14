@@ -23,14 +23,15 @@ public class Mando extends AppCompatActivity {
     private BufferedWriter bw;
     private String IP = Configuracion.getIp();
     private int miPuerto = Configuracion.getPuerto();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mando);
-        if (IP.equals("ERROR")){
-            Toast.makeText(this,"Debes configurar una direccion IP",
-            Toast.LENGTH_SHORT);
-            Intent i=new Intent(this, MainActivity.class);
+        if (IP.equals("ERROR")) {
+            Toast.makeText(this, "Debes configurar una direccion IP",
+                    Toast.LENGTH_SHORT);
+            Intent i = new Intent(this, MainActivity.class);
             i.putExtra("error", true);
             startActivity(i);
         }
@@ -38,6 +39,8 @@ public class Mando extends AppCompatActivity {
             socket = new Socket(IP, miPuerto);
             bw = new BufferedWriter(
                     new OutputStreamWriter(socket.getOutputStream()));
+            bw.write("2\n");
+            bw.flush();
         } catch (Exception exception) {
         }
         botones[0] = findViewById(R.id.flechaAbajo);    // Flecha abajo manda 1

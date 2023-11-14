@@ -69,6 +69,8 @@ public class Configuracion extends AppCompatActivity {
              BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
             if (conectado) { //Si está conectado hace estas instrucciones
+                bw.write("1\n");
+                bw.flush();
                 botonRojo.setImageResource(R.drawable.boton_rojo_encendido);
                 botonVerde.setImageResource(R.drawable.boton_verde_apagado);
                 textoOnOff.setText(getApplicationContext().getResources().getString(R.string.desconectado));
@@ -76,6 +78,8 @@ public class Configuracion extends AppCompatActivity {
                 conectado = false;
 
             } else { // Si está desconectado pues hace estas
+                bw.write("0\n");
+                bw.flush();
                 if (br.readLine().equals("1")) {
                     botonRojo.setImageResource(R.drawable.boton_rojo_apagado);
                     botonVerde.setImageResource(R.drawable.boton_verde_encendido);
