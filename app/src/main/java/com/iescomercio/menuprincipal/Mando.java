@@ -18,24 +18,24 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 public class Mando extends AppCompatActivity {
-    AppCompatButton[] botones = new AppCompatButton[9];
-    ImageView botonSalto, botonAgachar;
-    Socket socket;
-    BufferedWriter bw;
-    SharedPreferences preferencias = this.getPreferences(this.MODE_PRIVATE);
-
+    private AppCompatButton[] botones = new AppCompatButton[9];
+    private Socket socket;
+    private BufferedWriter bw;
+    private String IP = Configuracion.getIp();
+    private int miPuerto = Configuracion.getPuerto();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mando);
-        String ip = preferencias.getString("ip", null);
-        int puerto = preferencias.getInt("puerto", 0);
-        if (ip.equals(0)) {
-            Toast.makeText(this, "Primero debes hacer la configuracion", Toast.LENGTH_SHORT);
-            return;
+        if (IP.equals("ERROR")){
+            Toast.makeText(this,"Debes configurar una direccion IP",
+            Toast.LENGTH_SHORT);
+            Intent i=new Intent(this, MainActivity.class);
+            i.putExtra("error", true);
+            startActivity(i);
         }
         try {
-            socket = new Socket(ip, puerto);
+            socket = new Socket(IP, miPuerto);
             bw = new BufferedWriter(
                     new OutputStreamWriter(socket.getOutputStream()));
         } catch (Exception exception) {

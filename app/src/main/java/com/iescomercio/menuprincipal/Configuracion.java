@@ -13,18 +13,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.NoRouteToHostException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Configuracion extends AppCompatActivity {
-    EditText IPmod1, IPmod2, IPmod3, IPmod4, puerto;
-    Button conectar;
-    TextView textoOnOff;
-    ImageView botonRojo, botonVerde;
-    boolean conectado = false;
+    private EditText IPmod1, IPmod2, IPmod3, IPmod4, puerto;
+    private Button conectar;
+    private TextView textoOnOff;
+    private ImageView botonRojo, botonVerde;
+    private boolean conectado = false;
+    private static String ip = null;
+    private static int elPuerto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +48,10 @@ public class Configuracion extends AppCompatActivity {
         conectar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ip = creaIP(IPmod1, IPmod2, IPmod3, IPmod4);
+                ip = creaIP(IPmod1, IPmod2, IPmod3, IPmod4);
                 try {
-                    int port12 = Integer.parseInt(puerto.getText().toString());
-                    conexion(ip, port12);
+                    elPuerto = Integer.parseInt(puerto.getText().toString());
+                    conexion(ip, elPuerto);
                 } catch (NumberFormatException nfe) {
                     Toast.makeText(getApplicationContext(), "Ha habido un error en el número de puerto", Toast.LENGTH_SHORT).show();
                 }
@@ -62,7 +66,8 @@ public class Configuracion extends AppCompatActivity {
 
     private void conexion(String ip, int puerto) {
         try (Socket socket = new Socket(ip, puerto);
-             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
             if (conectado) { //Si está conectado hace estas instrucciones
                 botonRojo.setImageResource(R.drawable.boton_rojo_encendido);
                 botonVerde.setImageResource(R.drawable.boton_verde_apagado);
@@ -93,5 +98,11 @@ public class Configuracion extends AppCompatActivity {
     public void lanzarMenu(View view){
         Intent i=new Intent(this, MainActivity.class);
         startActivity(i);
+    }
+    public static String getIp(){
+        return (ip==null)?"ERROR":ip;
+    }
+    public static int getPuerto(){
+        return (elPuerto==0)?Integer.MIN_VALUE:elPuerto;
     }
 }
