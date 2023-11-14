@@ -12,33 +12,13 @@
         android:contentDescription="@string/background"
         android:cropToPadding="false"
         android:scaleType="fitXY"
+        android:tint="#77000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="526dp"
-        android:layout_height="240dp"
-        android:background="@drawable/bordes_redondos_datos"
-        android:backgroundTint="#C9582198"
-        android:fontFamily="@font/coda"
-        android:paddingLeft="5dp"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:text="Bienvenido a nuestra aplicación. Estás utilizando un mando que funciona a través de la red. Para configurarlo, tendrás que conectarte desde la ventana de configuración, añadiendo la IP y el puerto que el videojuego te muestre desde su menú de ayuda. También podrás meter tu cuenta para guardar tus estadísticas o jugar como invitado, pero en ese caso las estadísticas no se guardarán. "
-        android:textAlignment="center"
-        android:textColor="#E4E4E4"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496" />
+        app:srcCompat="@drawable/background"
+        tools:ignore="UseAppTint" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/botonMenu"
@@ -57,4 +37,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.048" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="550dp"
+        android:layout_height="265dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fondo_texto_informacion"
+        tools:ignore="UseAppTint" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="520dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/cabin"
+        android:text="Bienvenido a nuestra aplicación. Estás utilizando un mando que funciona a través de la red. Para configurarlo, tendrás que conectarte desde la ventana de configuración, añadiendo la IP y el puerto que el videojuego te muestre desde su menú de ayuda."
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="513dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/cabin"
+        android:text="No podrás acceder al mando hasta que se conecte correctamente. También podrás meter tu cuenta para guardar tus estadísticas o jugar como invitado, pero en ese caso las estadísticas no se guardarán."
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

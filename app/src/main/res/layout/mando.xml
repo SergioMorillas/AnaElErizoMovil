@@ -12,6 +12,7 @@
         android:contentDescription="@string/background"
         android:cropToPadding="false"
         android:scaleType="fitXY"
+        android:tint="#77000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
