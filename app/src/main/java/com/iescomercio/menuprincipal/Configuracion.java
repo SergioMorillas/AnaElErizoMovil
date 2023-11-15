@@ -26,9 +26,10 @@ public class Configuracion extends AppCompatActivity {
     private Button conectar;
     private TextView textoOnOff;
     private ImageView botonRojo, botonVerde;
-    private boolean conectado = false;
+    private static boolean conectado = false;
     private static String ip = null;
     private static int elPuerto;
+    private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +37,23 @@ public class Configuracion extends AppCompatActivity {
         setContentView(R.layout.configuracion);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         IPmod1 = findViewById(R.id.editTextIP192);
         IPmod2 = findViewById(R.id.editTextIP168);
         IPmod3 = findViewById(R.id.editTextIP0);
         IPmod4 = findViewById(R.id.editTextIP1);
+
         puerto = findViewById(R.id.editTextPort);
         conectar = findViewById(R.id.botonConectar);
         textoOnOff = findViewById(R.id.editTextOnOfF);
         botonRojo = findViewById(R.id.botonRojo);
         botonVerde = findViewById(R.id.botonVerde);
+
+        i = this.getIntent();
+        boolean aux = i.getBooleanExtra("configurado", false),
+                dis = i.getBooleanExtra("desconectado", false);
+
+        if (aux) configurado(dis);
         conectar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,49 +73,92 @@ public class Configuracion extends AppCompatActivity {
                 + iPmod3.getText().toString() + "." + iPmod4.getText().toString();
     }
 
+    private void setIP(String ip) {
+        String[] miIP = ip.split("\\.");
+        IPmod1.setText(miIP[0]);
+        IPmod2.setText(miIP[1]);
+        IPmod3.setText(miIP[2]);
+        IPmod4.setText(miIP[3]);
+    }
+
     private void conexion(String ip, int puerto) {
         try (Socket socket = new Socket(ip, puerto);
              BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
             if (conectado) { //Si está conectado hace estas instrucciones
-                bw.write("1\n");
-                bw.flush();
-                botonRojo.setImageResource(R.drawable.boton_rojo_encendido);
-                botonVerde.setImageResource(R.drawable.boton_verde_apagado);
-                textoOnOff.setText(getApplicationContext().getResources().getString(R.string.desconectado));
-                conectar.setText("Conectar");
-                conectado = false;
-
+                desconectar(bw);
             } else { // Si está desconectado pues hace estas
                 bw.write("0\n");
                 bw.flush();
                 if (br.readLine().equals("1")) {
-                    botonRojo.setImageResource(R.drawable.boton_rojo_apagado);
-                    botonVerde.setImageResource(R.drawable.boton_verde_encendido);
-                    textoOnOff.setText(getApplicationContext().getResources().getString(R.string.conectado));
-                    conectar.setText("Desconectar");
-                    conectado = true;
+                    conectar();
                 } else {
                     Toast.makeText(getApplicationContext(), "Se ha superado el límite de usuarios", Toast.LENGTH_SHORT).show();
                 }
             }
-        } catch (NoRouteToHostException e){
+        } catch (NoRouteToHostException e) {
             Toast.makeText(getApplicationContext(), "El servidor no es alcanzable", Toast.LENGTH_SHORT).show();
-        }catch (UnknownHostException e){
+        } catch (UnknownHostException e) {
             Toast.makeText(getApplicationContext(), "Ha habido un error en la conexión", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void lanzarMenu(View view){
-        Intent i=new Intent(this, MainActivity.class);
+    public void lanzarMenu(View view) {
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
-    public static String getIp(){
-        return (ip==null)?"ERROR":ip;
+
+    public static String getIp() {
+        return (ip == null) ? "ERROR" : ip;
     }
-    public static int getPuerto(){
-        return (elPuerto==0)?Integer.MIN_VALUE:elPuerto;
+
+    public static int getPuerto() {
+        return (elPuerto == 0) ? Integer.MIN_VALUE : elPuerto;
+    }
+
+    private void configurado(boolean dis) {
+        String extra = i.getStringExtra("ip");
+        setIP(extra);
+        int valor = i.getIntExtra("puerto", 0);
+        puerto.setText(String.valueOf(valor));
+        if (!dis) conectar();
+    }
+
+    private void conectar() {
+        botonRojo.setImageResource(R.drawable.boton_rojo_apagado);
+        botonVerde.setImageResource(R.drawable.boton_verde_encendido);
+        textoOnOff.setText(getApplicationContext().getResources().getString(R.string.conectado));
+        conectar.setText("Desconectar");
+        conectado = true;
+
+    }
+
+    private void desconectar(BufferedWriter bw) {
+        try {
+            bw.write("1\n");
+            bw.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        botonRojo.setImageResource(R.drawable.boton_rojo_encendido);
+        botonVerde.setImageResource(R.drawable.boton_verde_apagado);
+        textoOnOff.setText(getApplicationContext().getResources().getString(R.string.desconectado));
+        conectar.setText("Conectar");
+        conectado = false;
+    }
+
+    public static boolean estaConectado() {
+        return conectado;
+    }
+
+    public static int getStatus() {
+        if (getIp().equals("ERROR")) return 0;
+        if (conectado) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 }
