@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3B9B9"
+    android:background="#000000"
     tools:context=".MainActivity">
 
     <ImageView
@@ -14,11 +14,13 @@
         android:contentDescription="@string/background"
         android:cropToPadding="false"
         android:scaleType="fitXY"
+        android:tint="#77000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background" />
+        app:srcCompat="@drawable/background"
+        tools:ignore="UseAppTint" />
 
     <Button
         android:id="@+id/botonMando"

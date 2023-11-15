@@ -14,18 +14,21 @@
         android:contentDescription="@string/background"
         android:cropToPadding="false"
         android:scaleType="fitXY"
+        android:tint="#77000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.187"
-        app:srcCompat="@drawable/background" />
+        app:srcCompat="@drawable/background"
+        tools:ignore="UseAppTint" />
 
     <TextView
         android:id="@+id/editTextOnOfF"
         android:layout_width="192dp"
         android:layout_height="38dp"
         android:background="@drawable/bordes_redondos_nombres2"
+        android:fontFamily="@font/cabin"
         android:gravity="center_horizontal"
         android:text="@string/desconectado"
         android:textColor="#F3F1F7"
@@ -43,8 +46,10 @@
         android:layout_width="192dp"
         android:layout_height="66dp"
         android:layout_marginBottom="36dp"
+        android:fontFamily="@font/cabin"
         android:text="@string/conectar"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextOnOfF"
         app:layout_constraintEnd_toEndOf="@+id/editTextOnOfF"
         app:layout_constraintHorizontal_bias="0.0"
@@ -80,6 +85,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
+        android:fontFamily="@font/cabin"
         android:gravity="center|center_horizontal"
         android:hint="36000"
         android:inputType="number"
@@ -94,6 +100,7 @@
         android:layout_marginStart="40dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
+        android:fontFamily="@font/cabin"
         android:gravity="center"
         android:hint="192"
         android:imeOptions="actionNext"
@@ -113,6 +120,7 @@
         android:layout_marginStart="132dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
+        android:fontFamily="@font/cabin"
         android:gravity="center|center_horizontal"
         android:hint="168"
         android:imeOptions="actionNext"
@@ -131,6 +139,7 @@
         android:layout_marginStart="224dp"
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
+        android:fontFamily="@font/cabin"
         android:gravity="center|center_horizontal"
         android:hint="0"
         android:imeOptions="actionNext"
@@ -157,7 +166,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoIP"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.086"
+        android:fontFamily="@font/cabin" />
 
     <TextView
         android:id="@+id/textoPuerto"
