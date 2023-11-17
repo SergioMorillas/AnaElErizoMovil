@@ -38,22 +38,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textoIP3"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:background="@drawable/bordes_redondos_datos"
-        android:fontFamily="@font/cabin"
-        android:gravity="left|center_vertical"
-        android:text="@string/estadisticasIndividuales"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288" />
-
-    <TextView
         android:id="@+id/textoEstatsGenericas"
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -67,7 +51,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288" />
+        app:layout_constraintVertical_bias="0.329" />
+
+    <TextView
+        android:id="@+id/textoIP3"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/bordes_redondos_datos"
+        android:fontFamily="@font/cabin"
+        android:gravity="left|center_vertical"
+        android:text="@string/estadisticasIndividuales"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.329" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/botonMenu6"
@@ -87,25 +87,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.048" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32dp"
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:id="@+id/statsGenerales"
+        android:layout_width="299dp"
+        android:layout_height="173dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.868" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:id="@+id/statsIndividuales"
+        android:layout_width="299dp"
+        android:layout_height="173dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.868" >
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.github.mikephil.charting.charts.HorizontalBarChart>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
