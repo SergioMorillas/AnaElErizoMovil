@@ -1,8 +1,10 @@
 package com.iescomercio.menuprincipal;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -60,17 +62,23 @@ public class Mando extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
-
+    @SuppressLint("ClickableViewAccessibility")
     private void setClickListener(AppCompatButton b, int n) {
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        b.setOnTouchListener((view, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                 try {
                     bw.write(n + "\n");
                     bw.flush();
                 } catch (Exception ex) {
                 }
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                try {
+                    bw.write("-10\n");
+                    bw.flush();
+                } catch (Exception ex) {
+                }
             }
+            return false;
         });
     }
 
