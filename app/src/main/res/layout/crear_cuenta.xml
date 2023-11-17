@@ -50,7 +50,7 @@
         android:hint="@string/nombreUsuario"
         android:inputType="text"
         android:textAlignment="viewStart"
-        android:textColor="#7F56D4"
+        android:textColor="#FFFFFF"
         android:textColorHint="@color/gris"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

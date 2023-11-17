@@ -1,19 +1,25 @@
 package com.iescomercio.menuprincipal.persistencia;
 
+import android.widget.Toast;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class BaseDatos {
+    private Connection conexion;
     private String algoritmo = "MD5";
-
+    private String anadeUsuario = "insert into usuario (nombre, hash) values ('?', '?')";
     /**
      * Constructor sin algoritmo, se utilizará por defecto MD5
      */
     public BaseDatos() {
+        this("MD5");
+
     }
 
     /**
@@ -23,21 +29,6 @@ public class BaseDatos {
      */
     public BaseDatos(String algoritmo) {
         this.algoritmo = algoritmo;
-    }
-
-    public Connection conexion(String iURL, String iUsuario, String iContrasena) {
-        String url = iURL;
-        String usuario = iUsuario;
-        String contraseña = iContrasena;
-        Connection conexion = null;
-        try {
-            conexion = DriverManager.getConnection(url, usuario, contraseña);
-        } catch (SQLException e) {
-        }
-        return conexion;
-    }
-
-    public Connection conexion() {
         String url = "jdbc:sqlserver://localhost:1433;databaseName=quillquest";
         String usuario = "sa";
         String contraseña = "P@ssw0rd";
@@ -46,13 +37,32 @@ public class BaseDatos {
             conexion = DriverManager.getConnection(url, usuario, contraseña);
         } catch (SQLException e) {
         }
+    }
+
+    public Connection setConexion(String iURL, String iUsuario, String iContrasena) {
+        String url = iURL;
+        String usuario = iUsuario;
+        String contraseña = iContrasena;
+        try {
+            conexion = DriverManager.getConnection(url, usuario, contraseña);
+        } catch (SQLException e) {
+        }
         return conexion;
     }
 
     //TODO metodo para añadir los usuarios a la base de datos
-    public boolean anadeUsuario(String nombre, String contraseña, Connection conexion) {
-
-        return true;
+    public boolean anadeUsuario(String nombre, String contrasena) {
+        int r=0;
+        contrasena = cifraContrasena(contrasena);
+        try {
+            PreparedStatement sentencia = conexion.prepareCall(anadeUsuario);
+            sentencia.setString(1, nombre);
+            sentencia.setString(2, contrasena);
+            r = sentencia.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    return (r==0)?false:true;
     }
 
     /**
@@ -75,27 +85,25 @@ public class BaseDatos {
             throw new RuntimeException(e);
         }
     }
-    //TODO metodo para comparar las contraseñas con el hash
-
+    //TODO metodo para comprobar si el login ha sido correcto
     /**
      * Metodo que recibe nombre y contraseña en texto plano, comprueba si son correctas y devuelve un digito
      * @param nombre nombre del usuario
      * @param contrasena contraseña del usuario en texto plano
-     * @param conexion Connection
      * @return devuelve 0 si es correcto, 1 si el nombre no existe y 2 si la contraseña no corresponde
      */
-    public int compruebaLogin(String nombre, String contrasena, Connection conexion) {
-        if (!compruebaNombre(nombre, conexion)) return 1;
-        if (!compruebaContrasena(nombre, cifraContrasena(contrasena), conexion)) return 2;
+    public int compruebaLogin(String nombre, String contrasena) {
+        if (!compruebaNombre(nombre)) return 1;
+        if (!compruebaContrasena(nombre, cifraContrasena(contrasena))) return 2;
         return 0;
     }
-    //TODO metodo para comparar las contraseñas con el hash
-    public boolean compruebaNombre(String nombre, Connection conexion) {
+    //TODO metodo para comprobar si existe el nombre en la base de datos
+    public boolean compruebaNombre(String nombre) {
 
         return false;
     }
     //TODO metodo para comparar las contraseñas con el hash
-    public boolean compruebaContrasena(String nombre, String contrasena, Connection conexion) {
+    public boolean compruebaContrasena(String nombre, String contrasena) {
 
         return false;
     }
