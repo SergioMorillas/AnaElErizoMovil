@@ -1,13 +1,17 @@
 package com.iescomercio.menuprincipal;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,12 +32,17 @@ public class Estadisticas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.estadisticas);
-        //objBD = new BaseDatos();
+        stats_individuales = findViewById(R.id.statsIndividuales);
+        stats_generales = findViewById(R.id.statsGenerales);
+        objBD = new BaseDatos("MD5", "172.16.10.122", "sa", "P@ssw0rd", "quillquest");
         nombreUsuario = (EditText) findViewById(R.id.nombreUsuarioStats);
         nombreUsuario.setOnEditorActionListener(editorListener);
-        //datosGenerales = objBD.muestraEstadisticasGenerales();
-        //iniciarCharts(setDatos(datosGenerales), false);
+        datosGenerales = objBD.muestraEstadisticasGenerales();
+        iniciarCharts(setDatos(datosGenerales), false);
+
     }
 
     public void lanzarMenu(View view) {
@@ -44,19 +53,39 @@ public class Estadisticas extends AppCompatActivity {
     private TextView.OnEditorActionListener editorListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            boolean ret = true;
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 usuario = nombreUsuario.getText().toString();
-                //datosIndividuales = objBD.muestraEstadisticasNombre(usuario);
-                //iniciarCharts(setDatos(datosIndividuales), true);
-                return true;
+                if (!objBD.compruebaNombre(usuario)) {
+                    Toast.makeText(
+                            Estadisticas.this,
+                            String.format("El usuario %s no existe", usuario),
+                            Toast.LENGTH_SHORT).show();
+                    ret = false;
+                } else {
+                    // Lanzamos un hilo que actualiza las stats individuales y generales
+                    new Thread(() -> {
+                        datosIndividuales = objBD.muestraEstadisticasNombre(usuario);
+                        iniciarCharts(setDatos(datosIndividuales), true);
+                        datosGenerales = objBD.muestraEstadisticasGenerales();
+                        iniciarCharts(setDatos(datosGenerales), false);
+                    }).start();
+
+                    Toast.makeText(
+                            Estadisticas.this,
+                            "Mostrando las estadisticas del usuario " + usuario,
+                            Toast.LENGTH_SHORT).show();
+                    InputMethodManager imm = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(nombreUsuario.getWindowToken(), 0);
+                }
             }
-            return false;
+            return ret;
         }
     };
 
-    private void iniciarCharts(BarData bd, boolean esIndividual){
-        if(esIndividual){
-            stats_individuales = findViewById(R.id.statsIndividuales);
+    private void iniciarCharts(BarData bd, boolean esIndividual) {
+        if (esIndividual) {
             stats_individuales.getAxisLeft().setEnabled(false);
             stats_individuales.getXAxis().setEnabled(false);
             stats_individuales.getAxisRight().setEnabled(false);
@@ -66,8 +95,7 @@ public class Estadisticas extends AppCompatActivity {
             stats_individuales.setData(bd);
             stats_individuales.setDrawValueAboveBar(true);
             stats_individuales.invalidate();
-        }else{
-            stats_generales = findViewById(R.id.statsGenerales);
+        } else {
             stats_generales.getAxisLeft().setEnabled(false);
             stats_generales.getXAxis().setEnabled(false);
             stats_generales.getAxisRight().setEnabled(false);
@@ -80,7 +108,7 @@ public class Estadisticas extends AppCompatActivity {
         }
     }
 
-    private BarData setDatos(int[] array){
+    private BarData setDatos(int[] array) {
         ArrayList<BarEntry> lMuertes = new ArrayList<>();
         ArrayList<BarEntry> lResurrec = new ArrayList<>();
         ArrayList<BarEntry> lVictorias = new ArrayList<>();
