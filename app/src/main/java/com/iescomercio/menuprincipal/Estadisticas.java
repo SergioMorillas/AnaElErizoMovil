@@ -23,16 +23,17 @@ public class Estadisticas extends AppCompatActivity {
     int[] datosIndividuales, datosGenerales;
     EditText nombreUsuario;
     String usuario;
-    BaseDatos objBD = new BaseDatos();
+    BaseDatos objBD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.estadisticas);
+        //objBD = new BaseDatos();
         nombreUsuario = (EditText) findViewById(R.id.nombreUsuarioStats);
         nombreUsuario.setOnEditorActionListener(editorListener);
-        datosGenerales = objBD.muestraEstadisticasGenerales();
-        iniciarCharts(setDatos(datosGenerales), false);
+        //datosGenerales = objBD.muestraEstadisticasGenerales();
+        //iniciarCharts(setDatos(datosGenerales), false);
     }
 
     public void lanzarMenu(View view) {
@@ -45,8 +46,8 @@ public class Estadisticas extends AppCompatActivity {
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 usuario = nombreUsuario.getText().toString();
-                datosIndividuales = objBD.muestraEstadisticasNombre(usuario);
-                iniciarCharts(setDatos(datosIndividuales), true);
+                //datosIndividuales = objBD.muestraEstadisticasNombre(usuario);
+                //iniciarCharts(setDatos(datosIndividuales), true);
                 return true;
             }
             return false;
@@ -83,27 +84,31 @@ public class Estadisticas extends AppCompatActivity {
         ArrayList<BarEntry> lMuertes = new ArrayList<>();
         ArrayList<BarEntry> lResurrec = new ArrayList<>();
         ArrayList<BarEntry> lVictorias = new ArrayList<>();
+        int muertes, resurrecciones, victorias;
+        muertes = array[0];
+        resurrecciones = array[1];
+        victorias = array[2];
 
-        lMuertes.add(new BarEntry(0,array[0]));
-        lResurrec.add(new BarEntry(2,array[1]));
-        lVictorias.add(new BarEntry(4,array[2]));
+        lMuertes.add(new BarEntry(0, muertes));
+        lResurrec.add(new BarEntry(2, resurrecciones));
+        lVictorias.add(new BarEntry(4, victorias));
 
         BarDataSet bds_muertes = new BarDataSet(lMuertes, "Muertes");
-        bds_muertes.setColor(Color.RED);
+        bds_muertes.setColor(Color.BLACK);
         bds_muertes.setDrawValues(true);
         bds_muertes.setValueTextColor(Color.WHITE);
         bds_muertes.setValueTextSize(20);
 
         BarDataSet bds_resurrec = new BarDataSet(lResurrec, "Resurrecciones");
-        bds_resurrec.setColor(Color.BLUE);
+        bds_resurrec.setColor(Color.parseColor("#62B6CB"));
         bds_resurrec.setDrawValues(true);
-        bds_resurrec.setValueTextColor(Color.WHITE);
+        bds_resurrec.setValueTextColor(Color.BLACK);
         bds_resurrec.setValueTextSize(20);
 
         BarDataSet bds_victorias = new BarDataSet(lVictorias, "Victorias");
-        bds_victorias.setColor(Color.MAGENTA);
+        bds_victorias.setColor(Color.GREEN);
         bds_victorias.setDrawValues(true);
-        bds_victorias.setValueTextColor(Color.WHITE);
+        bds_victorias.setValueTextColor(Color.BLACK);
         bds_victorias.setValueTextSize(20);
 
         BarData bd = new BarData();
