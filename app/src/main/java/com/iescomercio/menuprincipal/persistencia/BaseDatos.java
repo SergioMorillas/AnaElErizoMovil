@@ -1,68 +1,60 @@
 package com.iescomercio.menuprincipal.persistencia;
 
-import android.widget.Toast;
-
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class BaseDatos {
     private Connection conexion;
-    private String algoritmo = "MD5";
-    private String anadeUsuario = "insert into usuario (nombre, hash) values ('?', '?')";
-    /**
-     * Constructor sin algoritmo, se utilizará por defecto MD5
-     */
-    public BaseDatos() {
-        this("MD5");
+    private final String algoritmo;
 
-    }
 
     /**
-     * Constructor con algoritmo, se utilizará el especificado
+     * Constructor completo
      *
      * @param algoritmo El algoritmo a utilizar, puede ser MD5, SHA-1, SHA-256
      */
-    public BaseDatos(String algoritmo) {
+    public BaseDatos(String algoritmo, String ip, String usuario, String contrasena, String baseDatos) {
         this.algoritmo = algoritmo;
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=quillquest";
-        String usuario = "sa";
-        String contraseña = "P@ssw0rd";
-        Connection conexion = null;
-        try {
-            conexion = DriverManager.getConnection(url, usuario, contraseña);
-        } catch (SQLException e) {
-        }
-    }
 
-    public Connection setConexion(String iURL, String iUsuario, String iContrasena) {
-        String url = iURL;
-        String usuario = iUsuario;
-        String contraseña = iContrasena;
+        String connectionUrl = "jdbc:jtds:sqlserver://" + ip + ":1433;"
+                + "database=" + baseDatos + ";"
+                + "user=" + usuario + ";"
+                + "password=" + contrasena + ";"
+                + "encrypt=true;"
+                + "trustServerCertificate=true;";
         try {
-            conexion = DriverManager.getConnection(url, usuario, contraseña);
+            this.conexion = DriverManager.getConnection(connectionUrl);
         } catch (SQLException e) {
+            String error = e.getMessage();
+            System.out.println(error);
         }
-        return conexion;
     }
 
     //TODO metodo para añadir los usuarios a la base de datos
     public boolean anadeUsuario(String nombre, String contrasena) {
-        int r=0;
+        Statement sentencia;
         contrasena = cifraContrasena(contrasena);
+        String consulta;
+        int p = 0;
         try {
-            PreparedStatement sentencia = conexion.prepareCall(anadeUsuario);
-            sentencia.setString(1, nombre);
-            sentencia.setString(2, contrasena);
-            r = sentencia.executeUpdate();
-        } catch (Exception e) {
-            System.out.println(e.toString());
+            sentencia = conexion.createStatement();
+            consulta = String.format("INSERT INTO [quillquest].[dbo].[usuario](" +
+                            "[quillquest].[dbo].[usuario].[nombre]," +
+                            "[quillquest].[dbo].[usuario].[hash]) " +
+                            "VALUES ('%s', '%s')",
+                    nombre, contrasena);
+            p = sentencia.executeUpdate(consulta);
+            System.out.println(p);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    return (r==0)?false:true;
+        return p!=0;
     }
 
     /**
@@ -78,33 +70,53 @@ public class BaseDatos {
             BigInteger number = new BigInteger(1, messageDigest);
             String hashtext = number.toString(16);
 
-            while (hashtext.length() < 32) hashtext = "0" + hashtext;
+            while (hashtext.length() < 32) hashtext = "0".concat(hashtext);
 
             return hashtext;
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
-    //TODO metodo para comprobar si el login ha sido correcto
+
     /**
      * Metodo que recibe nombre y contraseña en texto plano, comprueba si son correctas y devuelve un digito
-     * @param nombre nombre del usuario
+     *
+     * @param nombre     nombre del usuario
      * @param contrasena contraseña del usuario en texto plano
      * @return devuelve 0 si es correcto, 1 si el nombre no existe y 2 si la contraseña no corresponde
      */
     public int compruebaLogin(String nombre, String contrasena) {
         if (!compruebaNombre(nombre)) return 1;
-        if (!compruebaContrasena(nombre, cifraContrasena(contrasena))) return 2;
+        if (!compruebaContrasena(nombre, contrasena)) return 2;
         return 0;
     }
-    //TODO metodo para comprobar si existe el nombre en la base de datos
-    public boolean compruebaNombre(String nombre) {
 
+    private boolean compruebaNombre(String nombre) {
+        try {
+            Statement sentencia = conexion.createStatement();
+            String consulta = String.format("SELECT TOP (1000) [nombre]\n" +
+                    " FROM [quillquest].[dbo].[usuario] where nombre='%s'", nombre);
+            ResultSet set = sentencia.executeQuery(consulta);
+            while (set.next()) {
+                String p = set.getString(1);
+                if (p != null) return true;
+            }
+        } catch (Exception ignored) {}
         return false;
     }
-    //TODO metodo para comparar las contraseñas con el hash
-    public boolean compruebaContrasena(String nombre, String contrasena) {
 
+    private boolean compruebaContrasena(String nombre, String contrasena) {
+        try {
+            Statement sentencia = conexion.createStatement();
+            String consulta = String.format("SELECT TOP (1000) [hash]\n" +
+                    "  FROM [quillquest].[dbo].[usuario] where nombre='%s' and hash='%s'", nombre, contrasena);
+            ResultSet set = sentencia.executeQuery(consulta);
+            while (set.next()) {
+                String p = set.getString(1);
+                if (p != null) return true;
+            }
+        } catch (Exception ignored) {
+        }
         return false;
     }
     //TODO metodo para mostrar las estadisticas por nombre
@@ -115,15 +127,57 @@ public class BaseDatos {
      * luego resurecciones, y por ultimo victorias
      */
     public int[] muestraEstadisticasNombre(String nombre) {
-        return null;
+        int[] valoresDevolver = null;
+        try {
+            Statement sentencia = conexion.createStatement();
+            String consulta = String.format("SELECT TOP (1) \n" +
+                    "AVG([quillquest].[dbo].[estadisticas].[vecesMuerto]),\n" +
+                    "AVG([quillquest].[dbo].[estadisticas].[vecesResucitado]),\n" +
+                    "AVG([quillquest].[dbo].[estadisticas].[partidasGanadas])\n" +
+                    "  FROM [quillquest].[dbo].[estadisticas] \n" +
+                    "  JOIN [quillquest].[dbo].[usuario] \n" +
+                    "  ON [quillquest].[dbo].[usuario].[idUsuario] = [quillquest].[dbo].[estadisticas].[idUsuario]" +
+                    "  WHERE [quillquest].[dbo].[usuario].[nombre] = '%s'", nombre);
+            ResultSet set = sentencia.executeQuery(consulta);
+            while (set.next()) {
+                valoresDevolver= new int[3];
+                valoresDevolver[0] = set.getInt(1);
+                valoresDevolver[1] = set.getInt(2);
+                valoresDevolver[2] = set.getInt(3);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return valoresDevolver;
     }
 
     //TODO metodo para mostar las estadisticas generales
+
     /**
      * @return Los tres datos de las estadisticas por orden, primero muertes,
      * luego resurecciones, y por ultimo victorias
      */
     public int[] muestraEstadisticasGenerales() {
-        return null;
+        int[] valoresDevolver = null;
+        try {
+            Statement sentencia = conexion.createStatement();
+            String consulta = "SELECT TOP (1) \n" +
+                    "AVG([quillquest].[dbo].[estadisticas].[vecesMuerto]),\n" +
+                    "AVG([quillquest].[dbo].[estadisticas].[vecesResucitado]),\n" +
+                    "AVG([quillquest].[dbo].[estadisticas].[partidasGanadas])\n" +
+                    "  FROM [quillquest].[dbo].[estadisticas] \n" +
+                    "  JOIN [quillquest].[dbo].[usuario] \n" +
+                    "  ON [quillquest].[dbo].[usuario].[idUsuario] = [quillquest].[dbo].[estadisticas].[idUsuario]";
+            ResultSet set = sentencia.executeQuery(consulta);
+            while (set.next()) {
+                valoresDevolver= new int[3];
+                valoresDevolver[0] = set.getInt(1);
+                valoresDevolver[1] = set.getInt(2);
+                valoresDevolver[2] = set.getInt(3);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return valoresDevolver;
     }
 }
