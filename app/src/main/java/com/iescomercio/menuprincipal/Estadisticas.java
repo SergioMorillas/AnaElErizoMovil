@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.*;
 import com.github.mikephil.charting.charts.*;
 import com.iescomercio.menuprincipal.persistencia.BaseDatos;
@@ -90,8 +91,17 @@ public class Estadisticas extends AppCompatActivity {
             stats_individuales.getXAxis().setEnabled(false);
             stats_individuales.getAxisRight().setEnabled(false);
             stats_individuales.getLegend().setTextColor(Color.WHITE);
+
+            YAxis y = stats_individuales.getAxisLeft();
+            y.setDrawLabels(true);
+            y.setTextColor(Color.WHITE);
+            y.setTextSize(12f);
+            y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+            y.setSpaceTop(15f);
+
             stats_individuales.getDescription().setEnabled(false);
             stats_individuales.setScaleEnabled(false);
+
             stats_individuales.setData(bd);
             stats_individuales.setDrawValueAboveBar(true);
             stats_individuales.invalidate();
@@ -100,8 +110,17 @@ public class Estadisticas extends AppCompatActivity {
             stats_generales.getXAxis().setEnabled(false);
             stats_generales.getAxisRight().setEnabled(false);
             stats_generales.getLegend().setTextColor(Color.WHITE);
+
+            YAxis y = stats_individuales.getAxisLeft();
+            y.setDrawLabels(true);
+            y.setTextColor(Color.WHITE);
+            y.setTextSize(12f);
+            y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+            y.setSpaceTop(15f);
+
             stats_generales.getDescription().setEnabled(false);
             stats_generales.setScaleEnabled(false);
+
             stats_generales.setData(bd);
             stats_generales.setDrawValueAboveBar(false);
             stats_generales.invalidate();
