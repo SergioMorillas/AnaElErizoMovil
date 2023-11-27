@@ -79,7 +79,7 @@
         android:background="@drawable/bordes_redondos_datos"
         android:ems="10"
         android:fontFamily="@font/cabin"
-        android:hint="Nombre de usuario:"
+        android:hint="@string/estadisticasIndividuales"
         android:inputType="text"
         android:textColor="#FFFFFF"
         android:textColorHint="@color/gris"

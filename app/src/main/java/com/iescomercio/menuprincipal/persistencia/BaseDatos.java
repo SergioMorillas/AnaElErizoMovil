@@ -91,7 +91,7 @@ public class BaseDatos {
         return 0;
     }
 
-    public boolean compruebaNombre(String nombre) {
+    private boolean compruebaNombre(String nombre) {
         try {
             Statement sentencia = conexion.createStatement();
             String consulta = String.format("SELECT TOP (1000) [nombre]\n" +
