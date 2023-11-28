@@ -25,6 +25,7 @@ public class Mando extends AppCompatActivity {
     private BufferedWriter bw;
     private String IP = Configuracion.getIp();
     private int miPuerto = Configuracion.getPuerto();
+    private String usuario = InicioSesion.getUsuario().trim();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +63,19 @@ public class Mando extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
     @SuppressLint("ClickableViewAccessibility")
     private void setClickListener(AppCompatButton b, int n) {
         b.setOnTouchListener((view, motionEvent) -> {
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 try {
-                    bw.write(n + "\n");
+                    bw.write(usuario + ":" + n + "\n");
                     bw.flush();
                 } catch (Exception ex) {
                 }
-            } else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 try {
-                    bw.write("-10\n");
+                    bw.write(usuario + ":" + "-10\n");
                     bw.flush();
                 } catch (Exception ex) {
                 }

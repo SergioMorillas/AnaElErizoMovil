@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MenuPrincipal</string>
+    <string name="app_name">QuillMando</string>
     <string name="nombreJuego">Nombre del juego</string>
     <string name="mando">Mando</string>
     <string name="estadisticas">Estadísticas</string>

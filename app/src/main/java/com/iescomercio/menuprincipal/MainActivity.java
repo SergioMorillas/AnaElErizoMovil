@@ -11,32 +11,46 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button[] botones = new Button[4];
-    Button miBoton;
+    Button botonConfiguracion, botonEstadisticas, botonIniciarSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        miBoton = findViewById(R.id.botonMando);
+        botonConfiguracion = findViewById(R.id.botonMando);
+        botonEstadisticas = findViewById(R.id.botonEstadisticas);
+        botonIniciarSesion = findViewById(R.id.botonIniciarSesion);
+
         if (Configuracion.getIp().equals("ERROR") || !Configuracion.estaConectado()) {
-            miBoton.setClickable(false);
+            botonConfiguracion.setClickable(false);
+            botonEstadisticas.setClickable(false);
+            botonIniciarSesion.setClickable(false);
         } else {
-            miBoton.setClickable(true);
+            botonConfiguracion.setClickable(true);
+            botonEstadisticas.setClickable(true);
+            botonIniciarSesion.setClickable(true);
         }
     }
 
     public void lanzarMando(View view) {
         Intent i = new Intent(this, Mando.class);
+        if (InicioSesion.getUsuario()==null) {
+            Toast.makeText(MainActivity.this, "Debes iniciar sesion primero",
+                    Toast.LENGTH_SHORT);
+            return;
+        }
         startActivity(i);
     }
 
     public void lanzarInicioSesión(View view) {
         Intent i = new Intent(this, InicioSesion.class);
+        i.putExtra("ip", Configuracion.getIp());
         startActivity(i);
     }
 
     public void lanzarEstadisticas(View view) {
         Intent i = new Intent(this, Estadisticas.class);
+        i.putExtra("ip", Configuracion.getIp());
         startActivity(i);
     }
 

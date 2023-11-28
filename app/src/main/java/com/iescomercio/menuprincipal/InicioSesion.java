@@ -18,13 +18,15 @@ public class InicioSesion extends AppCompatActivity {
     private BaseDatos bd;
     private int encontrado;
     private String sUsuario;
+    private static String miUsuario = null;
+    private static String ip = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        bd = new BaseDatos("MD5", "172.16.10.122", "sa", "P@ssw0rd", "quillquest");
+        ip = this.getIntent().getExtras().getString("ip");
+        bd = new BaseDatos("MD5", ip, "sa", "P@ssw0rd", "quillquest");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicio_sesion);
         usuario = findViewById(R.id.editTextUsuario);
@@ -51,6 +53,7 @@ public class InicioSesion extends AppCompatActivity {
                         Toast.makeText(InicioSesion.this,
                                 "Gracias por conectarte " + sUsuario,
                                 Toast.LENGTH_SHORT).show();
+                        miUsuario=sUsuario;
                         break;
                 }
 
@@ -66,7 +69,11 @@ public class InicioSesion extends AppCompatActivity {
 
     public void lanzarCrearCuenta(View view) {
         Intent i = new Intent(this, CrearCuenta.class);
+        i.putExtra("ip", ip);
         startActivity(i);
+    }
+    public static String getUsuario(){
+        return miUsuario;
     }
 }
 

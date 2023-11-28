@@ -35,7 +35,8 @@ public class CrearCuenta extends AppCompatActivity {
                     contrasena.setText("");
                     rContrasena.setText("");
                 } else {
-                    BaseDatos bd = new BaseDatos("MD5", "172.16.10.122", "sa", "P@ssw0rd", "quillquest");
+                    String ip = CrearCuenta.this.getIntent().getStringExtra("ip");
+                    BaseDatos bd = new BaseDatos("MD5", ip, "sa", "P@ssw0rd", "quillquest");
                     boolean b = bd.anadeUsuario(usuario.getText().toString(), contrasena.getText().toString());
                     if (b) {
                         Toast.makeText(CrearCuenta.this, "Se ha podido agregar el usuario",
@@ -56,6 +57,7 @@ public class CrearCuenta extends AppCompatActivity {
 
     public void lanzarInicioSesión(View view) {
         Intent i = new Intent(this, InicioSesion.class);
+        i.putExtra("ip", Configuracion.getIp());
         startActivity(i);
     }
 }
