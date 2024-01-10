@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.*;
 import com.github.mikephil.charting.charts.*;
 import com.iescomercio.menuprincipal.persistencia.BaseDatos;
@@ -92,9 +93,16 @@ public class Estadisticas extends AppCompatActivity {
             stats_individuales.getAxisRight().setEnabled(false);
             stats_individuales.getLegend().setTextColor(Color.WHITE);
             stats_individuales.getDescription().setEnabled(false);
+
+            stats_individuales.getAxisLeft().setDrawLabels(false);
+            stats_individuales.getAxisRight().setDrawLabels(false);
+            stats_individuales.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+            stats_individuales.getXAxis().setDrawGridLines(false);
+
             stats_individuales.setScaleEnabled(false);
             stats_individuales.setData(bd);
             stats_individuales.setDrawValueAboveBar(true);
+
             stats_individuales.invalidate();
         } else {
             stats_generales.getAxisLeft().setEnabled(false);

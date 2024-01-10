@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -40,15 +41,25 @@ public class BaseDatos {
     public boolean anadeUsuario(String nombre, String contrasena) {
         Statement sentencia;
         contrasena = cifraContrasena(contrasena);
-        String consulta;
+        String consulta, consulta2;
         int p = 0;
+        ResultSet resultadoID;
+        int idUsuario;
         try {
+            consulta2 = "SELECT MAX(idUsuario) FROM [quillquest].[dbo].[usuario]";
+            PreparedStatement ps = conexion.prepareStatement(consulta2);
+            resultadoID = ps.executeQuery();
+            resultadoID.next();
+            idUsuario = resultadoID.getInt(1);
+            idUsuario++;
+
             sentencia = conexion.createStatement();
             consulta = String.format("INSERT INTO [quillquest].[dbo].[usuario](" +
+                            "[quillquest].[dbo].[usuario].[idUsuario]," +
                             "[quillquest].[dbo].[usuario].[nombre]," +
                             "[quillquest].[dbo].[usuario].[hash]) " +
-                            "VALUES ('%s', '%s')",
-                    nombre, contrasena);
+                            "VALUES ('%d', '%s', '%s')",
+                    idUsuario, nombre, contrasena);
             p = sentencia.executeUpdate(consulta);
             System.out.println(p);
         } catch (SQLException e) {
