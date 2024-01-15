@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Properties;
+
 public class MainActivity extends AppCompatActivity {
     Button[] botones = new Button[4];
     Button botonConfiguracion, botonEstadisticas, botonIniciarSesion;
@@ -20,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         botonConfiguracion = findViewById(R.id.botonMando);
         botonEstadisticas = findViewById(R.id.botonEstadisticas);
         botonIniciarSesion = findViewById(R.id.botonIniciarSesion);
-
         if (Configuracion.getIp().equals("ERROR") || !Configuracion.estaConectado()) {
             botonConfiguracion.setClickable(false);
             botonEstadisticas.setClickable(false);

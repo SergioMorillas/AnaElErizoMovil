@@ -17,6 +17,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.NoRouteToHostException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -82,17 +85,21 @@ public class Configuracion extends AppCompatActivity {
     }
 
     private void conexion(String ip, int puerto) {
-        try (Socket socket = new Socket(ip, puerto);
-             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
+        try {
+            InetSocketAddress conectar = new InetSocketAddress(ip, puerto);
+            Socket socket = new Socket();
+            socket.connect(conectar, 2*1000);
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             if (conectado) { //Si está conectado hace estas instrucciones
                 desconectar(bw);
             } else { // Si está desconectado pues hace estas
                 bw.write("0\n");
                 bw.flush();
-                if (br.readLine().equals("1")) {
+                String recibido = br.readLine();
+                if (recibido != null && recibido.equals("1")) {
                     conectar();
-                } else {
+                } else if (recibido == null) {
                     Toast.makeText(getApplicationContext(), "Se ha superado el límite de usuarios", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -101,7 +108,7 @@ public class Configuracion extends AppCompatActivity {
         } catch (UnknownHostException e) {
             Toast.makeText(getApplicationContext(), "Ha habido un error en la conexión", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Toast.makeText(getApplicationContext(), "Ha habido un error en la conexión", Toast.LENGTH_SHORT).show();
         }
     }
 

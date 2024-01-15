@@ -21,7 +21,7 @@ public class BaseDatos {
      */
     public BaseDatos(String algoritmo, String ip, String usuario, String contrasena, String baseDatos) {
         this.algoritmo = algoritmo;
-
+        ip = "172.16.10.122";
         String connectionUrl = "jdbc:jtds:sqlserver://" + ip + ":1433;"
                 + "database=" + baseDatos + ";"
                 + "user=" + usuario + ";"
@@ -40,7 +40,10 @@ public class BaseDatos {
     public boolean anadeUsuario(String nombre, String contrasena) {
         Statement sentencia;
         contrasena = cifraContrasena(contrasena);
-        String consulta;
+        String consulta, creaEstad;
+        if (compruebaNombre(nombre)){
+            return false;
+        }
         int p = 0;
         try {
             sentencia = conexion.createStatement();
@@ -50,7 +53,16 @@ public class BaseDatos {
                             "VALUES ('%s', '%s')",
                     nombre, contrasena);
             p = sentencia.executeUpdate(consulta);
-            System.out.println(p);
+            if (p!=0){
+                creaEstad = String.format("INSERT INTO [quillquest].[dbo].[estadisticas](" +
+                                "[quillquest].[dbo].[estadisticas].[vecesMuerto]," +
+                                "[quillquest].[dbo].[estadisticas].[vecesResucitado]) " +
+                                "[quillquest].[dbo].[estadisticas].[partidasGanadas]) " +
+                                "[quillquest].[dbo].[estadisticas].[idUsuario]) " +
+                                "VALUES ('%s', '%s', %s, %s)",
+                        "0", "0","0",getId(nombre));
+                p=sentencia.executeUpdate(creaEstad);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -95,6 +107,19 @@ public class BaseDatos {
         try {
             Statement sentencia = conexion.createStatement();
             String consulta = String.format("SELECT TOP (1000) [nombre]\n" +
+                    " FROM [quillquest].[dbo].[usuario] where nombre='%s'", nombre);
+            ResultSet set = sentencia.executeQuery(consulta);
+            while (set.next()) {
+                String p = set.getString(1);
+                if (p != null) return true;
+            }
+        } catch (Exception ignored) {}
+        return false;
+    }
+    public boolean getId(String nombre) {
+        try {
+            Statement sentencia = conexion.createStatement();
+            String consulta = String.format("SELECT TOP (1000) [idUsuario]\n" +
                     " FROM [quillquest].[dbo].[usuario] where nombre='%s'", nombre);
             ResultSet set = sentencia.executeQuery(consulta);
             while (set.next()) {
