@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.*;
 import com.github.mikephil.charting.charts.*;
 import com.iescomercio.menuprincipal.persistencia.BaseDatos;
@@ -63,14 +62,15 @@ public class Estadisticas extends AppCompatActivity {
                             Estadisticas.this,
                             String.format("El usuario %s no existe", usuario),
                             Toast.LENGTH_SHORT).show();
+                    limpiarEstadisticas();
                     ret = false;
                 } else {
                     // Lanzamos un hilo que actualiza las stats individuales y generales
                     new Thread(() -> {
                         datosIndividuales = objBD.muestraEstadisticasNombre(usuario);
-                        iniciarCharts(setDatos(datosIndividuales), true);
+                        runOnUiThread(() -> iniciarCharts(setDatos(datosIndividuales), true));
                         datosGenerales = objBD.muestraEstadisticasGenerales();
-                        iniciarCharts(setDatos(datosGenerales), false);
+                        runOnUiThread(() -> iniciarCharts(setDatos(datosGenerales), false));
                     }).start();
 
                     Toast.makeText(
@@ -93,17 +93,11 @@ public class Estadisticas extends AppCompatActivity {
             stats_individuales.getAxisRight().setEnabled(false);
             stats_individuales.getLegend().setTextColor(Color.WHITE);
             stats_individuales.getDescription().setEnabled(false);
-
-            stats_individuales.getAxisLeft().setDrawLabels(false);
-            stats_individuales.getAxisRight().setDrawLabels(false);
-            stats_individuales.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-            stats_individuales.getXAxis().setDrawGridLines(false);
-
             stats_individuales.setScaleEnabled(false);
             stats_individuales.setData(bd);
-            stats_individuales.setDrawValueAboveBar(true);
-
             stats_individuales.invalidate();
+            stats_individuales.setVisibility(View.VISIBLE);
+            ponerValores("individuales");
         } else {
             stats_generales.getAxisLeft().setEnabled(false);
             stats_generales.getXAxis().setEnabled(false);
@@ -112,8 +106,52 @@ public class Estadisticas extends AppCompatActivity {
             stats_generales.getDescription().setEnabled(false);
             stats_generales.setScaleEnabled(false);
             stats_generales.setData(bd);
-            stats_generales.setDrawValueAboveBar(false);
             stats_generales.invalidate();
+            stats_generales.setVisibility(View.VISIBLE);
+            ponerValores("generales");
+        }
+    }
+
+    private void limpiarEstadisticas(){
+        TextView tMuertes = findViewById(R.id.textoMuertes1);
+        TextView tResurrec = findViewById(R.id.textoResur1);
+        TextView tVictorias = findViewById(R.id.textoVictorias1);
+
+        stats_individuales.clear();
+        stats_individuales.invalidate();
+            stats_individuales.setVisibility(View.GONE);
+        tMuertes.setText("");
+        tResurrec.setText("");
+        tVictorias.setText("");
+    }
+
+    private void ponerValores(String estadisticas){
+        TextView tMuertes1 = findViewById(R.id.textoMuertes1);
+        TextView tResurrec1 = findViewById(R.id.textoResur1);
+        TextView tVictorias1 = findViewById(R.id.textoVictorias1);
+        TextView tMuertes2 = findViewById(R.id.textoMuertes2);
+        TextView tResurrec2 = findViewById(R.id.textoResur2);
+        TextView tVictorias2 = findViewById(R.id.textoVictorias2);
+        if(estadisticas.equals("individuales")){
+            int muertes, resurrecciones, victorias;
+
+            muertes = datosIndividuales[0];
+            resurrecciones = datosIndividuales[1];
+            victorias = datosIndividuales[2];
+
+            tMuertes1.setText(Integer.toString(muertes));
+            tResurrec1.setText(Integer.toString(resurrecciones));
+            tVictorias1.setText(Integer.toString(victorias));
+        }else if(estadisticas.equals("generales")){
+            int muertes, resurrecciones, victorias;
+
+            muertes = datosGenerales[0];
+            resurrecciones = datosGenerales[1];
+            victorias = datosGenerales[2];
+
+            tMuertes2.setText(Integer.toString(muertes));
+            tResurrec2.setText(Integer.toString(resurrecciones));
+            tVictorias2.setText(Integer.toString(victorias));
         }
     }
 
@@ -122,6 +160,7 @@ public class Estadisticas extends AppCompatActivity {
         ArrayList<BarEntry> lResurrec = new ArrayList<>();
         ArrayList<BarEntry> lVictorias = new ArrayList<>();
         int muertes, resurrecciones, victorias;
+
         muertes = array[0];
         resurrecciones = array[1];
         victorias = array[2];
@@ -132,19 +171,16 @@ public class Estadisticas extends AppCompatActivity {
 
         BarDataSet bds_muertes = new BarDataSet(lMuertes, "Muertes");
         bds_muertes.setColor(Color.BLACK);
-        bds_muertes.setDrawValues(true);
         bds_muertes.setValueTextColor(Color.WHITE);
         bds_muertes.setValueTextSize(20);
 
         BarDataSet bds_resurrec = new BarDataSet(lResurrec, "Resurrecciones");
         bds_resurrec.setColor(Color.parseColor("#62B6CB"));
-        bds_resurrec.setDrawValues(true);
         bds_resurrec.setValueTextColor(Color.BLACK);
         bds_resurrec.setValueTextSize(20);
 
         BarDataSet bds_victorias = new BarDataSet(lVictorias, "Victorias");
         bds_victorias.setColor(Color.GREEN);
-        bds_victorias.setDrawValues(true);
         bds_victorias.setValueTextColor(Color.BLACK);
         bds_victorias.setValueTextSize(20);
 
@@ -152,9 +188,8 @@ public class Estadisticas extends AppCompatActivity {
         bd.addDataSet(bds_muertes);
         bd.addDataSet(bds_resurrec);
         bd.addDataSet(bds_victorias);
-        bd.setDrawValues(true);
+        bd.setDrawValues(false);
 
         return bd;
     }
 }
-

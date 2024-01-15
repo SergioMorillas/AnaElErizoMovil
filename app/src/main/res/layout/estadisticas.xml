@@ -89,28 +89,126 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.329" />
 
-    <com.github.mikephil.charting.charts.HorizontalBarChart
-        android:id="@+id/statsGenerales"
+    <ImageView
+        android:id="@+id/stats1"
         android:layout_width="300dp"
         android:layout_height="164dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/stats_fondo_oscuro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoEstatsGenericas"
+        app:srcCompat="@drawable/stats_fondo_oscuro" />
+
+    <ImageView
+        android:id="@+id/stats2"
+        android:layout_width="300dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuarioStats"
+        app:srcCompat="@drawable/stats_fondo_oscuro" />
+
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:id="@+id/statsIndividuales"
+        android:layout_width="228dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuarioStats">
+
+    </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:id="@+id/statsGenerales"
+        android:layout_width="228dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="105dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoEstatsGenericas">
 
     </com.github.mikephil.charting.charts.HorizontalBarChart>
 
-    <com.github.mikephil.charting.charts.HorizontalBarChart
-        android:id="@+id/statsIndividuales"
-        android:layout_width="300dp"
-        android:layout_height="164dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/stats_fondo_oscuro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreUsuarioStats">
+    <TextView
+        android:id="@+id/textoVictorias1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:text=" "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/stats2"
+        app:layout_constraintTop_toTopOf="@+id/stats2" />
 
-    </com.github.mikephil.charting.charts.HorizontalBarChart>
+    <TextView
+        android:id="@+id/textoMuertes1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:text=" "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/stats2"
+        app:layout_constraintEnd_toEndOf="@+id/stats2" />
+
+    <TextView
+        android:id="@+id/textoResur1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:text=" "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textoMuertes1"
+        app:layout_constraintEnd_toEndOf="@+id/stats2"
+        app:layout_constraintTop_toBottomOf="@+id/textoVictorias1" />
+
+    <TextView
+        android:id="@+id/textoMuertes2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:text=" "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/stats1"
+        app:layout_constraintEnd_toEndOf="@+id/stats1" />
+
+    <TextView
+        android:id="@+id/textoVictorias2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:text=" "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/stats1"
+        app:layout_constraintTop_toTopOf="@+id/stats1" />
+
+    <TextView
+        android:id="@+id/textoResur2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:text=" "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textoMuertes2"
+        app:layout_constraintEnd_toEndOf="@+id/stats1"
+        app:layout_constraintTop_toBottomOf="@+id/textoVictorias2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
