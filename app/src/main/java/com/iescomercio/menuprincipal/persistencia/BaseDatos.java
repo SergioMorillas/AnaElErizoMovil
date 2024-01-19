@@ -21,7 +21,6 @@ public class BaseDatos {
      */
     public BaseDatos(String algoritmo, String ip, String usuario, String contrasena, String baseDatos) {
         this.algoritmo = algoritmo;
-        ip = "172.16.10.122";
         String connectionUrl = "jdbc:jtds:sqlserver://" + ip + ":1433;"
                 + "database=" + baseDatos + ";"
                 + "user=" + usuario + ";"
